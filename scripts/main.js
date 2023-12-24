@@ -1,6 +1,7 @@
 document.getElementById("amort_button").addEventListener("click", () => {
     
     erase_table("amort_table");
+    erase_table("stats_table");
     
     const form = new FormData(document.getElementById("amort_form"));
     
@@ -11,7 +12,7 @@ document.getElementById("amort_button").addEventListener("click", () => {
     
     }
     
-    amortization_schedule(form_values,"amort_table");
+    amortization_schedule(form_values,"amort_table","stats_table");
 
 
 });
@@ -51,23 +52,30 @@ function create_table(headers, data, id) {
 
 }
 
-function amortization_schedule(form, table_id) {
-
+function amortization_schedule(form, table_id, stats_id) {
 
     const mp = monthly_payments(form.loan, form.periods, form.interests);
     const data = amortization_data(form.loan, form.periods, form.interests/1200, mp);
+    const total_interests = data.reduce((sum, cell) => {
+        return sum + cell.interest}, 0);
+    const total_payment = data.reduce((sum, cell) => {
+        return sum + cell.interest + cell.principal}, 0);
+        
+    const stats_data = [{
+        mp: Math.round(mp * 100) / 100,
+        total_interests: total_interests,
+        total_payment: total_payment
+    }];
     
+    schedule_headers = ["Mes", "Intereses", "Abono", "Saldo a obligación"];
+    stats_headers = ["Pago Mensual", "Interéses Totales", "Pago Total"];
     
-    headers = ["Mes", "Intereses", "Abono", "Saldo a obligación"];
-    table = create_table(headers, data, table_id);
+    schedule = create_table(schedule_headers, data, table_id);
+    stats = create_table(stats_headers, stats_data, stats_id);
     
     const amort_div = document.getElementById("amort_div");
-    amort_div.appendChild(table);
-    
-    console.log(mp.toFixed(2))
-    console.log(form.interests/1200);
-    
-    
+    amort_div.appendChild(stats);
+    amort_div.appendChild(schedule);
 
 }
 
