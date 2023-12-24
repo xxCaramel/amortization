@@ -63,8 +63,8 @@ function amortization_schedule(form, table_id, stats_id) {
         
     const stats_data = [{
         mp: Math.round(mp * 100) / 100,
-        total_interests: total_interests,
-        total_payment: total_payment
+        total_interests: Math.round(total_interests * 100) / 100,
+        total_payment: Math.round(total_payment * 100) / 100,
     }];
     
     schedule_headers = ["Mes", "Intereses", "Abono", "Saldo a obligación"];
@@ -104,7 +104,6 @@ function amortization_data(loan, periods, monthly_interest, mp) {
 function create_data_point(period, interest, principal, ending_balance) {
 
     return {
-    
         period: Math.round(period * 100) / 100,
         interest: Math.round(interest * 100) / 100,
         principal:Math.round(principal * 100) / 100,
