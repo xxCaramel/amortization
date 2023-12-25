@@ -80,22 +80,22 @@ function amortization_data(loan, periods, monthly_interest, mp) {
     
     let data = [];
     let beginning_balance = loan;
+    let interest_to_pay = 0;
+    let principal = 0;
+    let ending_balance = loan;
 
-    for (let i = 1; i <= periods; i++) {
+    for (let i = 0; i <= periods; i++) {
     
-        let interest_to_pay = (monthly_interest * beginning_balance);
-        let principal = (mp - interest_to_pay);
-        let ending_balance = (beginning_balance - principal);
-        
         let data_point = create_data_point(i, interest_to_pay, principal, ending_balance);
         data.push(data_point);
-        
+    
+        interest_to_pay = (monthly_interest * beginning_balance);
+        principal = (mp - interest_to_pay);
+        ending_balance = (beginning_balance - principal);
         beginning_balance = ending_balance;
     
     }
-    
     return data;
-
 }
 
 function create_data_point(period, interest, principal, ending_balance) {
