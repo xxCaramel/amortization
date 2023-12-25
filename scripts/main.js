@@ -9,11 +9,8 @@ document.getElementById("amort_button").addEventListener("click", () => {
         loan: form.get("total_loan"),
         periods: form.get("loan_term"),
         interests: form.get("annual_interests")
-    
     }
-    
     amortization_schedule(form_values,"amort_table","stats_table");
-
 
 });
 
@@ -68,7 +65,7 @@ function amortization_schedule(form, table_id, stats_id) {
     }];
     
     schedule_headers = ["Mes", "Intereses", "Abono", "Saldo a obligación"];
-    stats_headers = ["Pago Mensual", "Interéses Totales", "Pago Total"];
+    stats_headers = ["Pago Mensual", "Intereses Totales", "Pago Total"];
     
     schedule = create_table(schedule_headers, data, table_id);
     stats = create_table(stats_headers, stats_data, stats_id);
