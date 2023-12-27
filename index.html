@@ -18,13 +18,21 @@
       </div>
       
       <div>
-        <label for="term"> Plazo (meses): </label>
+        <label for="term"> Plazo: </label>
         <input type="number" id="term" name="loan_term" inputmode="numeric">
       </div>
       
       <div>
-        <label for="interests"> Intereses Anuales (%): </label>
+        <label for="interests"> Intereses (%)</label>
         <input type="number" id="interests" name="annual_interests" inputmode="numeric">
+        <select name="compounded" id="compounded_sel">
+          <option value="annual">Anual</option>
+          <option value="biannualy">Semestral</option>
+          <option value="quarterly">Cuatrimestre</option>
+          <option value="trimester">Trimestre</option>
+          <option value="month">Mensual</option>
+          <option value="weekly">Semanal</option>
+        </select>
       </div>
     
     </form>

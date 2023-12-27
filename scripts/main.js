@@ -6,9 +6,9 @@ document.getElementById("amort_button").addEventListener("click", () => {
     const form = new FormData(document.getElementById("amort_form"));
     
     let form_values = {
-        loan: form.get("total_loan"),
-        periods: form.get("loan_term"),
-        interests: form.get("annual_interests")
+        loan: Math.abs(form.get("total_loan")),
+        periods: Math.abs(form.get("loan_term")),
+        interests: Math.abs(form.get("annual_interests"))
     }
     amortization_schedule(form_values,"amort_table","stats_table");
 
