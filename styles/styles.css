@@ -3,9 +3,19 @@ html {
     font-size: 24px;
 }
 
-.body {
+body {
     margin: 0;
     height: 100%;
+    background-image: linear-gradient(to left,#4f4f51, #2c2b30);
+
+}
+
+label {
+    color: white;
+}
+
+h1 {
+    color: white;
 }
 
 .center_container {
@@ -13,6 +23,7 @@ html {
     display:flex;
     flex-direction: column;
     align-items: center;
+    
    
 }
 
@@ -37,6 +48,7 @@ html {
 table {
     table-layout: fixed;
     border-collapse: collapse;
+    color: white;
 }
 
 th,
